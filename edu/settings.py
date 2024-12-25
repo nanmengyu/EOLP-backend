@@ -79,8 +79,15 @@ WSGI_APPLICATION = 'edu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'edu_db',
+        'USER': 'edu_user',
+        'PASSWORD': 'Password123!',
+        'HOST': 'localhost',
+        'POST': '3306',
+        'OPTIONS': {
+            'unix_socket': '/var/run/mysqld/mysqld.sock',
+        },
     }
 }
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import User, Banner, Feedback
-
+from django.utils.html import format_html
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -23,5 +23,7 @@ class FeedbackAdmin(admin.ModelAdmin):
     ordering = ('-id',)
 
 
-admin.site.site_header = "在线教育后台"
-admin.site.site_index = "在线教育"
+admin.site.site_header = "电力知识库与在线学习平台后台"
+admin.site.site_index = "电力知识库与在线学习平台后台"
+admin.site.site_title = "电力知识库与在线学习平台后台"
+

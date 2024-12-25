@@ -5,7 +5,7 @@ from django.db import models
 
 class User(models.Model):
     username = models.CharField(max_length=20, unique=True, verbose_name="账号")
-    password = models.CharField(max_length=50, verbose_name="密码")
+    password = models.CharField(max_length=255, verbose_name="密码")
     nickname = models.CharField(max_length=30, verbose_name="昵称", null=True, blank=True)
     avatar = models.ImageField(upload_to="avatars/", verbose_name="头像", default="avatars/default.jpg")
 
