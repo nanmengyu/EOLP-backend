@@ -32,7 +32,7 @@ class R(BaseModel, Generic[T]):
 
 class TokenUtil:
 
-    def __init__(self, effective_time: int = timedelta(minutes=30).seconds, secret_key: str = None, algorithms: str = "HS256"):
+    def __init__(self, effective_time: int = 3600 * 24 * 7, secret_key: str = None, algorithms: str = "HS256"):
         """
         token 🔧
         :param effective_time: 有效时间-当前时间 + 指定秒数
