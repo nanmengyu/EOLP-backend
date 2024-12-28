@@ -8,7 +8,7 @@ from apps.user.models import User
 default_tell = """#### 课程须知
 如果有问题及时反馈  
 #### 你能学到什么
-Django Ninja & React 前后端的使用
+电力行业的相关知识
 """
 
 

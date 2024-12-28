@@ -21,20 +21,39 @@ router = Router()
 
 @router.post("/login", summary="登录", response=Union[LoginResult, R])
 def auth_login(request, auth: LoginSchema):
+    """
+    登录接口
+    """
     try:
+        # 查询用户
         obj = User.objects.get(username=auth.username)
+        # 验证密码
         if not check_password(auth.password, obj.password):
-            # 验证失败
             return R.fail("用户名或密码错误")
     except User.DoesNotExist:
-        # 用户不存在
-        password = make_password(auth.password)  # 对密码进行哈希处理
-        obj = User.objects.create(username=auth.username, password=password)
+        return R.fail("用户不存在，请先注册")
 
     # 生成token
     token = token_util.build(obj.id)
     return {"token": token, "user": obj}
 
+
+@router.post("/register", summary="注册", response=R)
+def auth_register(request, auth: LoginSchema):
+    """
+    注册接口
+    """
+    try:
+        # 检查用户名是否已存在
+        if User.objects.filter(username=auth.username).exists():
+            return R.fail("用户名已被注册")
+        
+        # 创建用户
+        password = make_password(auth.password)  # 对密码进行哈希处理
+        User.objects.create(username=auth.username, password=password)
+        return R.ok("注册成功")
+    except Exception as e:
+        return R.fail(f"注册失败: {str(e)}")
 
 @router.post("/logout", summary="退出")
 def auth_logout(request):

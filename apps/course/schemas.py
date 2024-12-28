@@ -18,8 +18,14 @@ class VideoSchema(ModelSchema):
         fields = "__all__"
 
 
+
+
+
 class ChapterSchema(ModelSchema):
     videos: List[VideoSchema] = None
+
+
+    
 
     class Meta:
         model = Chapter
